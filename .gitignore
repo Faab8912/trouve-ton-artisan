@@ -1,0 +1,35 @@
+# Dépendances
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environnement
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+/build
+/dist
+
+# Logs
+*.log
+npm-debug.log*
+
+# Database
+*.sql
+!backend/database/*.sql
+
+# Misc
+.cache/
+.parcel-cache/
