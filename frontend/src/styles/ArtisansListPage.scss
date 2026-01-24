@@ -1,0 +1,83 @@
+@import 'variables';
+@import 'mixins';
+
+.artisans-list-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+
+  .container {
+    h1 {
+      font-size: $font-size-h1;
+      color: $color-dark;
+      margin-bottom: $spacing-xl;
+      text-align: center;
+
+      @include responsive('mobile') {
+        font-size: 28px;
+      }
+    }
+
+    .search-filter {
+      display: flex;
+      gap: $spacing-md;
+      margin-bottom: $spacing-xl;
+
+      @include responsive('mobile') {
+        flex-direction: column;
+      }
+
+      input {
+        flex: 1;
+        padding: $spacing-md;
+        border: 1px solid $color-gray;
+        border-radius: $border-radius;
+        font-size: 14px;
+
+        &:focus {
+          outline: none;
+          border-color: $color-primary;
+        }
+      }
+
+      button {
+        padding: $spacing-md $spacing-lg;
+        background-color: $color-primary;
+        color: $color-white;
+        border: none;
+        border-radius: $border-radius;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: $color-primary-dark;
+        }
+
+        @include responsive('mobile') {
+          width: 100%;
+        }
+      }
+    }
+
+    .artisans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $spacing-lg;
+
+      @include responsive('mobile') {
+        grid-template-columns: 1fr;
+      }
+
+      @include responsive('tablet') {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .no-results {
+      text-align: center;
+      color: $color-gray;
+      padding: $spacing-xl;
+      font-size: 16px;
+    }
+  }
+}

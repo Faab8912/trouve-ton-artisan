@@ -1,0 +1,49 @@
+@import 'variables';
+@import 'mixins';
+
+.search-bar-main {
+  display: flex;
+  gap: $spacing-md;
+  margin: $spacing-xl 0;
+
+  @include responsive('mobile') {
+    flex-direction: column;
+  }
+
+  input {
+    flex: 1;
+    padding: $spacing-md;
+    border: 1px solid $color-gray;
+    border-radius: $border-radius;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+    }
+
+    @include responsive('mobile') {
+      font-size: 16px;
+    }
+  }
+
+  button {
+    padding: $spacing-md $spacing-lg;
+    background-color: $color-primary;
+    color: $color-white;
+    border: none;
+    border-radius: $border-radius;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $color-primary-dark;
+    }
+
+    @include responsive('mobile') {
+      width: 100%;
+    }
+  }
+}

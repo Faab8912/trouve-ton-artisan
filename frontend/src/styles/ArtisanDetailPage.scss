@@ -1,0 +1,214 @@
+@import 'variables';
+@import 'mixins';
+
+.artisan-detail-page {
+  min-height: 100vh;
+  padding: $spacing-xl 0;
+
+  .container {
+    .artisan-header {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: $spacing-xl;
+      margin-bottom: $spacing-xl;
+      align-items: start;
+
+      @include responsive('mobile') {
+        grid-template-columns: 1fr;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+      }
+
+      .artisan-info {
+        h1 {
+          font-size: $font-size-h1;
+          color: $color-dark;
+          margin-bottom: $spacing-md;
+
+          @include responsive('mobile') {
+            font-size: 28px;
+          }
+        }
+
+        .specialite {
+          color: $color-primary;
+          font-weight: 500;
+          font-size: 18px;
+          margin-bottom: $spacing-md;
+        }
+
+        .rating {
+          display: flex;
+          gap: $spacing-md;
+          align-items: center;
+          margin-bottom: $spacing-md;
+
+          .stars {
+            color: #ffc107;
+            font-size: 18px;
+          }
+
+          .note {
+            color: $color-dark;
+            font-weight: 500;
+          }
+
+          .avis {
+            color: $color-gray;
+            font-size: 14px;
+          }
+        }
+
+        .localisation {
+          color: $color-gray;
+          margin-bottom: $spacing-lg;
+          font-size: 15px;
+        }
+
+        .btn-website {
+          display: inline-block;
+          padding: $spacing-md $spacing-lg;
+          background-color: $color-primary;
+          color: $color-white;
+          border-radius: $border-radius;
+          transition: background-color 0.3s;
+          font-weight: 500;
+
+          &:hover {
+            background-color: $color-primary-dark;
+          }
+        }
+      }
+    }
+
+    .artisan-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-xl;
+
+      @include responsive('mobile') {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        h2 {
+          font-size: $font-size-h3;
+          color: $color-dark;
+          margin-bottom: $spacing-lg;
+        }
+      }
+
+      .about-section {
+        p {
+          color: $color-gray;
+          line-height: 1.8;
+          font-size: 15px;
+        }
+      }
+
+      .contact-section {
+        @include card;
+
+        .success-message {
+          background-color: #d4edda;
+          color: #155724;
+          padding: $spacing-md;
+          border-radius: $border-radius;
+          margin-bottom: $spacing-lg;
+          border-left: 4px solid $color-success;
+        }
+
+        .contact-form {
+          .form-group {
+            margin-bottom: $spacing-lg;
+
+            label {
+              display: block;
+              color: $color-dark;
+              font-weight: 500;
+              margin-bottom: $spacing-sm;
+              font-size: 14px;
+            }
+
+            input,
+            textarea {
+              width: 100%;
+              padding: $spacing-md;
+              border: 1px solid $color-gray;
+              border-radius: $border-radius;
+              font-size: 14px;
+              font-family: inherit;
+
+              &:focus {
+                outline: none;
+                border-color: $color-primary;
+                box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+              }
+            }
+
+            textarea {
+              resize: vertical;
+            }
+          }
+
+          .btn-submit {
+            width: 100%;
+            padding: $spacing-md;
+            background-color: $color-primary;
+            color: $color-white;
+            border: none;
+            border-radius: $border-radius;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            font-size: 15px;
+
+            &:hover {
+              background-color: $color-primary-dark;
+            }
+          }
+        }
+      }
+
+      .avis-section {
+        grid-column: 1 / -1;
+
+        .avis-list {
+          display: flex;
+          flex-direction: column;
+          gap: $spacing-lg;
+
+          .avis-item {
+            @include card;
+
+            .avis-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: $spacing-md;
+
+              strong {
+                color: $color-dark;
+              }
+
+              .avis-note {
+                color: #ffc107;
+              }
+            }
+
+            p {
+              color: $color-gray;
+              line-height: 1.6;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
