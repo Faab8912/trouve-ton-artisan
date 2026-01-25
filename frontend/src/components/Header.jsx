@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import api from '../services/api';
-import '../styles/Header.scss';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import api from "../services/api";
+import "../styles/Header.scss";
 
 export default function Header() {
   const [categories, setCategories] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchCategories();
@@ -13,10 +13,10 @@ export default function Header() {
 
   const fetchCategories = async () => {
     try {
-      const response = await api.get('/categories');
+      const response = await api.get("/categories");
       setCategories(response.data);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
@@ -32,12 +32,16 @@ export default function Header() {
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo">
-            Trouve ton artisan
+            <img
+              src="/Logo.png"
+              alt="Trouve ton artisan"
+              className="logo-img"
+            />
           </Link>
-          
+
           <nav className="navbar">
             <Link to="/">Accueil</Link>
-            {categories.map(cat => (
+            {categories.map((cat) => (
               <Link key={cat.id} to={`/artisans?categorie=${cat.nom}`}>
                 {cat.nom}
               </Link>

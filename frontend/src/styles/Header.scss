@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
 .header {
   background-color: $color-white;
@@ -13,7 +13,7 @@
     padding: $spacing-lg 0;
     gap: $spacing-lg;
 
-    @include responsive('mobile') {
+    @include responsive("mobile") {
       flex-direction: column;
       gap: $spacing-md;
     }
@@ -30,9 +30,15 @@
       color: $color-primary-dark;
     }
 
-    @include responsive('mobile') {
+    @include responsive("mobile") {
       font-size: 18px;
     }
+  }
+  .logo-img {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+    display: block;
   }
 
   .navbar {
@@ -50,7 +56,7 @@
       }
     }
 
-    @include responsive('mobile') {
+    @include responsive("mobile") {
       gap: $spacing-md;
       font-size: 14px;
     }
@@ -73,7 +79,7 @@
         border-color: $color-primary;
       }
 
-      @include responsive('mobile') {
+      @include responsive("mobile") {
         min-width: 120px;
       }
     }
@@ -93,7 +99,7 @@
       }
     }
 
-    @include responsive('mobile') {
+    @include responsive("mobile") {
       width: 100%;
       order: 3;
 
