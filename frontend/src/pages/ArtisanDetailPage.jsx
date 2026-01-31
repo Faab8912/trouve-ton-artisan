@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import api from '../services/api';
-import '../styles/ArtisanDetailPage.scss';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import api from "../services/api";
+import "../styles/ArtisanDetailPage.scss";
 
 export default function ArtisanDetailPage() {
   const { id } = useParams();
   const [artisan, setArtisan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
-    nom: '',
-    email: '',
-    telephone: '',
-    objet: '',
-    message: ''
+    nom: "",
+    email: "",
+    telephone: "",
+    objet: "",
+    message: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -28,38 +28,38 @@ export default function ArtisanDetailPage() {
       setArtisan(response.data);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching artisan:', error);
+      console.error("Error fetching artisan:", error);
       setLoading(false);
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmitContact = async (e) => {
     e.preventDefault();
-    
+
     try {
-      await api.post('/contact', {
+      await api.post("/contact", {
         artisan_id: id,
-        ...formData
+        ...formData,
       });
       setSubmitted(true);
       setFormData({
-        nom: '',
-        email: '',
-        telephone: '',
-        objet: '',
-        message: ''
+        nom: "",
+        email: "",
+        telephone: "",
+        objet: "",
+        message: "",
       });
       setTimeout(() => setSubmitted(false), 3000);
     } catch (error) {
-      console.error('Error submitting contact:', error);
+      console.error("Error submitting contact:", error);
     }
   };
 
@@ -94,22 +94,19 @@ export default function ArtisanDetailPage() {
   return (
     <>
       <Header />
-      
+
       <main className="artisan-detail-page">
         <div className="container">
           <div className="artisan-header">
-            <img src={artisan.photo || '/placeholder.jpg'} alt={artisan.nom} />
-            
             <div className="artisan-info">
               <h1>{artisan.nom}</h1>
-              
-              <p className="specialite">
-                {artisan.Specialite?.nom}
-              </p>
-              
+
+              <p className="specialite">{artisan.Specialite?.nom}</p>
+
               <div className="rating">
                 <span className="stars">
-                  {'★'.repeat(Math.round(artisan.note))}{'☆'.repeat(5 - Math.round(artisan.note))}
+                  {"★".repeat(Math.round(artisan.note))}
+                  {"☆".repeat(5 - Math.round(artisan.note))}
                 </span>
                 <span className="note">{artisan.note.toFixed(1)}/5</span>
                 <span className="avis">({artisan.nombre_avis} avis)</span>
@@ -120,7 +117,12 @@ export default function ArtisanDetailPage() {
               </p>
 
               {artisan.site_web && (
-                <a href={artisan.site_web} target="_blank" rel="noopener noreferrer" className="btn-website">
+                <a
+                  href={artisan.site_web}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-website"
+                >
                   Visiter le site
                 </a>
               )}
@@ -135,10 +137,11 @@ export default function ArtisanDetailPage() {
 
             <section className="contact-section">
               <h2>Contacter {artisan.nom}</h2>
-              
+
               {submitted && (
                 <div className="success-message">
-                  Votre message a ete envoye avec succes! Une reponse vous sera apportee sous 48h.
+                  Votre message a ete envoye avec succes! Une reponse vous sera
+                  apportee sous 48h.
                 </div>
               )}
 
@@ -201,7 +204,9 @@ export default function ArtisanDetailPage() {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn-submit">Envoyer</button>
+                <button type="submit" className="btn-submit">
+                  Envoyer
+                </button>
               </form>
             </section>
 
@@ -209,11 +214,14 @@ export default function ArtisanDetailPage() {
               <section className="avis-section">
                 <h2>Avis des clients</h2>
                 <div className="avis-list">
-                  {artisan.Avis.map(avis => (
+                  {artisan.Avis.map((avis) => (
                     <div key={avis.id} className="avis-item">
                       <div className="avis-header">
                         <strong>{avis.nom_client}</strong>
-                        <span className="avis-note">{'★'.repeat(avis.note)}{'☆'.repeat(5 - avis.note)}</span>
+                        <span className="avis-note">
+                          {"★".repeat(avis.note)}
+                          {"☆".repeat(5 - avis.note)}
+                        </span>
                       </div>
                       <p>{avis.commentaire}</p>
                     </div>

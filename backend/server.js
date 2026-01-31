@@ -16,25 +16,35 @@ app.use(
   })
 );
 
+// ✅ Debug logging
+app.use((req, res, next) => {
+  console.log(`📍 ${req.method} ${req.path}`);
+  next();
+});
+
 app.use("/api", routes);
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong!" });
+  console.error("❌ ERROR:", err);
+  res.status(500).json({ error: err.message });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 sequelize
   .authenticate()
   .then(() => {
-    console.log("Database connection successful");
+    console.log("✅ Database connection successful");
+    return sequelize.sync({ alter: true });
+  })
+  .then(() => {
+    console.log("✅ Database synced");
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`✅ Server running on http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.error("Database connection failed:", err);
+    console.error("❌ Database error:", err);
     process.exit(1);
   });
 
