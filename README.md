@@ -1,178 +1,269 @@
 # Trouve ton artisan
 
+Plateforme de recherche d'artisans dans la région Auvergne-Rhône-Alpes. Découvrez et contactez les meilleurs professionnels près de chez vous.
+
+---
+
+## Table des matières
+
+- [Description](#description)
+- [Fonctionnalités](#fonctionnalités)
+- [Stack Technologique](#stack-technologique)
+- [Installation](#installation)
+- [Structure du Projet](#structure-du-projet)
+- [Configuration](#configuration)
+- [Base de Données](#base-de-données)
+- [Déploiement](#déploiement)
+
+---
+
 ## Description
 
-Plateforme web permettant aux particuliers de trouver rapidement un artisan dans la région Auvergne-Rhône-Alpes et de lui demander des prestations ou des tarifs via un formulaire de contact.
+**Trouve ton artisan** est une application web développée pour faciliter la recherche d'artisans professionnels dans la région Auvergne-Rhône-Alpes. Le projet comprend :
 
-## Fonctionnalités principales
+- Une API REST complète avec Express.js
+- Une interface utilisateur moderne en React
+- Une base de données MySQL pour gérer les artisans
+- Une documentation Figma des maquettes (3 pages)
+- Un plan de sécurité complet
 
-- Recherche d'artisans par catégorie (Alimentation, Bâtiment, Services, Fabrication)
-- Recherche d'artisans par nom
-- Affichage des 3 artisans du mois en vedette
-- Fiche détaillée pour chaque artisan avec:
-  - Photo/logo
-  - Spécialité et localisation
-  - Notes et avis des clients
-  - Formulaire de contact
-  - Lien vers le site web de l'artisan
-- Page 404 personnalisée
-- Design responsive (mobile first)
-- Accessibilité WCAG 2.1
+### Objectifs du Projet
 
-## Stack technologique
+- Permettre aux utilisateurs de rechercher des artisans par catégorie
+- Consulter les profils détaillés des artisans
+- Contacter directement les artisans via un formulaire
+- Consulter les avis et évaluations
+
+---
+
+## Fonctionnalités
+
+### Page d'Accueil
+
+- Présentation générale de la plateforme
+- Section "Comment trouver mon artisan?" (4 étapes)
+- Affichage des 3 artisans du mois
+- Navigation par catégories
+
+### Liste des Artisans
+
+- Filtrage par catégorie (Alimentation, Bâtiment, Fabrication, Services)
+- Recherche par nom
+- Affichage en grille (3 colonnes)
+- Évaluation et avis visibles
+
+### Fiche Artisan
+
+- Informations complètes de l'artisan
+- Section "À propos"
+- Avis clients
+- Formulaire de contact pour envoyer un message
+- Lien vers le site web de l'artisan
+
+### Sécurité
+
+- Protection contre les injections SQL (prepared statements)
+- Sanitization des entrées utilisateur
+- Configuration CORS sécurisée
+- Gestion des erreurs sans divulgation d'infos sensibles
+
+---
+
+## Stack Technologique
 
 ### Frontend
-- React 18
-- Bootstrap 5
-- Sass
-- Axios
+
+- React 18 - Framework JavaScript
+- React Router - Navigation
+- SCSS - Styles (variables, mixins, architecture modulaire)
+- Axios - Appels API
 
 ### Backend
-- Node.js
-- Express
-- MySQL
-- Sequelize (ORM)
+
+- Node.js - Runtime JavaScript
+- Express.js - Framework web
+- MySQL 2 - Base de données avec prepared statements
 
 ### Outils
-- Git et GitHub (versionning)
-- Figma (maquettes)
-- Visual Studio Code (IDE)
 
-## Structure du projet
+- npm - Gestionnaire de paquets
+- Figma - Design et maquettes
+- GitHub - Contrôle de version
 
-trouve-ton-artisan/
-├── frontend/ - Application React
-│   ├── public/
-│   ├── src/
-│   │   ├── components/ - Composants réutilisables
-│   │   ├── pages/ - Pages complètes
-│   │   ├── services/ - Appels API
-│   │   ├── styles/ - Fichiers Sass
-│   │   ├── App.jsx
-│   │   └── index.js
-│   ├── package.json
-│   └── .env
-├── backend/ - API Express
-│   ├── config/ - Configuration
-│   ├── models/ - Modèles Sequelize
-│   ├── controllers/ - Logique métier
-│   ├── routes/ - Endpoints API
-│   ├── middleware/ - Authentification, validation
-│   ├── database/ - Scripts SQL
-│   ├── server.js
-│   ├── package.json
-│   └── .env
-├── docs/ - Documentation
-│   ├── API.md
-│   ├── SECURITE.md
-│   ├── MCD_MLD.md
-│   └── INSTALL.md
-└── README.md
+---
 
 ## Installation
 
 ### Prérequis
-- Node.js (v14+)
-- MySQL (v5.7+)
-- npm ou yarn
-- Git
 
-### Étapes
+- Node.js (v16+)
+- npm (v8+)
+- MySQL 8.0+
 
-1. Cloner le repository
+### 1. Cloner le Repository
 
-git clone https://github.com/Faab8912/trouve-ton-artisan.git
-cd trouve-ton-artisan
+Cloner le repository depuis GitHub et naviguer dans le dossier du projet.
 
-2. Configuration de la base de données
+### 2. Installation du Backend
 
-mysql -u root -p < backend/database/create.sql
-mysql -u root -p < backend/database/seed.sql
+Naviguer dans le dossier backend et installer les dépendances avec npm.
 
-3. Installation du backend
+Créer un fichier `.env` avec les informations de connexion MySQL :
 
-cd backend
-npm install
+- DB_HOST=localhost
+- DB_USER=root
+- DB_PASSWORD=votre_mot_de_passe
+- DB_NAME=trouve_ton_artisan
+- DB_PORT=3306
+- PORT=5001
 
-Créer un fichier `.env`:
+Importer la base de données en utilisant le script database.sql.
 
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=votre_mot_de_passe
-DB_NAME=trouve_ton_artisan
-PORT=5000
+Lancer le serveur. Le backend s'exécutera sur http://localhost:5001
 
-Démarrer:
+### 3. Installation du Frontend
 
-npm start
+Naviguer dans le dossier frontend et installer les dépendances avec npm.
 
-4. Installation du frontend
+Lancer l'application React. L'application s'ouvrira sur http://localhost:3000
 
-cd ../frontend
-npm install
+---
 
-Créer un fichier `.env`:
+## Structure du Projet
 
-REACT_APP_API_URL=http://localhost:5000/api
+```
+trouve-ton-artisan/
+├── backend/
+│   ├── controllers/          # Contrôleurs API
+│   ├── routes/              # Routes Express
+│   ├── config/              # Configuration (base de données)
+│   ├── database.sql         # Script création BD
+│   ├── seed.sql             # Script alimentation BD
+│   ├── server.js            # Point d'entrée
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/      # Composants React
+│   │   ├── pages/           # Pages (Accueil, Artisans, Détail)
+│   │   ├── styles/          # Feuilles SCSS
+│   │   ├── App.jsx          # Composant principal
+│   │   └── index.js         # Point d'entrée
+│   └── package.json
+│
+├── docs/
+│   ├── MCD_MLD.docx         # Schéma base de données
+│   ├── Plan_Securite.docx   # Plan de sécurité
+│   └── Figma_Mockups/       # Captures des maquettes
+│
+└── README.md                # Ce fichier
+```
 
-Démarrer:
+---
 
-npm start
+## Configuration
 
-Accès: http://localhost:3000
+### Variables d'Environnement (Backend)
 
-## Base de données
+| Variable      | Description        | Exemple              |
+| ------------- | ------------------ | -------------------- |
+| `DB_HOST`     | Hôte MySQL         | `localhost`          |
+| `DB_USER`     | Utilisateur MySQL  | `root`               |
+| `DB_PASSWORD` | Mot de passe MySQL | `password`           |
+| `DB_NAME`     | Nom de la base     | `trouve_ton_artisan` |
+| `DB_PORT`     | Port MySQL         | `3306`               |
+| `PORT`        | Port du serveur    | `5001`               |
 
-### Tables principales
-- `categorie`: Catégories d'artisans
-- `specialite`: Spécialités par catégorie
-- `artisan`: Informations des artisans
-- `avis`: Avis et notes des clients
-- `contact`: Messages de contact
+### CORS Configuration
 
-Voir `docs/MCD_MLD.md` pour le schéma détaillé.
+Le backend accepte les requêtes de http://localhost:3000 uniquement en développement.
 
-## API REST
+Pour la production, modifier le fichier backend/server.js en configurant l'URL de production dans corsOptions.
 
-### Endpoints principaux
+---
 
-GET  /api/artisans                          - Tous les artisans
-GET  /api/artisans/:id                      - Un artisan
-GET  /api/artisans?categorie=Alimentation   - Filtrer par catégorie
-GET  /api/artisans?nom=jean                 - Rechercher par nom
-GET  /api/artisans?top=true                 - Artisans en vedette
-GET  /api/categories                        - Toutes les catégories
-POST /api/contact                           - Envoyer un message
-POST /api/avis                              - Laisser un avis
+## Base de Données
 
-Voir `docs/API.md` pour la documentation complète.
+### Tables Principales
 
-## Sécurité
+#### CATEGORIE
 
-- Validation stricte des données côté serveur
-- Protection contre les injections SQL (Sequelize ORM)
-- Protection XSS (React échappe automatiquement)
-- CORS configuré
-- Rate limiting
-- Gestion complète des erreurs
+- Catégories d'artisans (Alimentation, Bâtiment, etc.)
 
-Voir `docs/SECURITE.md` pour plus de détails.
+#### SPECIALITE
 
-## Responsivité
+- Spécialités spécifiques liées aux catégories
 
-Design adapté à:
-- Téléphones (320px+)
-- Tablettes (768px+)
-- Ordinateurs (1024px+)
+#### ARTISAN
 
-## Accessibilité
+- Informations des artisans
+- Nom, email, téléphone, adresse, note, évaluation
 
-Respect de la norme WCAG 2.1
+#### AVIS
+
+- Avis clients sur les artisans
+- Note, commentaire
+
+#### CONTACT
+
+- Messages de contact envoyés via le formulaire
+
+### Importer les Données
+
+Utiliser le script database.sql pour créer les tables et le script seed.sql pour alimenter la base de données avec les données initiales.
+
+---
 
 ## Déploiement
 
-- Frontend: Netlify ou Vercel
-- Backend: Heroku ou Railway
-- Base de données: Services cloud MySQL
+### Frontend (Netlify recommandé)
 
-Voir `docs/INSTALL.md` pour les étapes détaillées.
+1. Générer le build React avec npm run build
+2. Déployer le dossier build/ sur Netlify
+
+### Backend (Heroku, Railway, ou autre)
+
+1. Préparer le serveur de production
+2. Configurer les variables d'environnement
+3. Déployer le code avec Git
+
+---
+
+## Sécurité
+
+- Injection SQL : Requêtes préparées
+- XSS : Sanitization des entrées
+- CORS : Configuration stricte
+- Erreurs : Messages génériques
+- Environnement : Variables sensibles en .env
+
+Voir Plan_Securite.docx pour plus de détails.
+
+---
+
+## API Endpoints
+
+### GET
+
+- GET /api/artisans - Tous les artisans
+- GET /api/artisans/:id - Détail d'un artisan
+- GET /api/artisans?categorie=1 - Artisans par catégorie
+- GET /api/categories - Toutes les catégories
+- GET /api/specialites - Toutes les spécialités
+
+### POST
+
+- POST /api/contact - Envoyer un message de contact
+- POST /api/avis - Poster un avis
+
+---
+
+## Maquettes Figma
+
+3 pages complètes ont été mockupées en Figma :
+
+1. Page d'Accueil - Présentation générale
+2. Page Liste Artisans - Grille de cartes
+3. Page Détail Artisan - Profil complet + formulaire
+
+Voir docs/Figma_Mockups/ pour les captures d'écran.
